@@ -25,11 +25,11 @@ function DividerWithText() {
   );
 }
 
-function LookupHome({ displayName, onScan }) {
+function LookupHome({ onScan }) {
   return (
     <LookupShell>
             <h1 className="mt-7 text-center text-[18px] font-extrabold text-[#4d008e]">
-        Hi, {displayName}.
+        Scan a QR code to access medical records
       </h1>
 
       <section className="mt-5 rounded-[18px] border border-[#ded9ef] bg-white px-7 py-8 text-center shadow-[0_14px_34px_rgba(14,24,150,0.08)]">
@@ -138,8 +138,16 @@ function Scanner({ onBack }) {
         try {
           const codes = await detectorRef.current.detect(videoRef.current);
           if (codes.length > 0) {
-            setScanResult(codes[0].rawValue || "QR code detected");
-            setCameraStatus("QR code detected.");
+            const value = codes[0].rawValue || "";
+            setScanResult(value || "QR code detected");
+
+            if (/^https?:\/\//i.test(value)) {
+              setCameraStatus("QR code detected. Redirecting…");
+              stopCamera();
+              window.location.assign(value);
+            } else {
+              setCameraStatus("QR code detected.");
+            }
             return;
           }
         } catch (error) {
@@ -266,13 +274,12 @@ function Scanner({ onBack }) {
   );
 }
 
-export default function IcePatientLookupScreens({ userType = "Doctor" }) {
+export default function IcePatientLookupScreens() {
   const [screen, setScreen] = useState("lookup");
-  const displayName = userType === "Staff" ? "Staff User" : "Dr";
 
   if (screen === "scanner") {
     return <Scanner onBack={() => setScreen("lookup")} />;
   }
 
-  return <LookupHome displayName={displayName} onScan={() => setScreen("scanner")} />;
+  return <LookupHome onScan={() => setScreen("scanner")} />;
 }

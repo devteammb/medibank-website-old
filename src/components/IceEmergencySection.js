@@ -2,30 +2,22 @@
 
 import { useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
-import DoctorIceLoginForm from "@/components/DoctorIceLoginForm";
-import IceAccessForm from "@/components/IceAccessForm";
 import IcePatientLookupScreens from "@/components/IcePatientLookupScreens";
-
-const userTypes = ["Citizen", "Doctor", "Staff"];
 
 const citizenSteps = [
   {
     label: "Step 1",
-    content: "Enter mobile number and OTP",
-  },
-  {
-    label: "Step 2",
     content: (
       <>
-        Scan the <span className="font-extrabold">QR Code</span> of patient or
-        Enter <span className="font-extrabold">MID</span>
+        Scan the <span className="font-extrabold">QR Code</span> of the person
+        or enter their <span className="font-extrabold">MID</span>
       </>
     ),
   },
   {
-    label: "Step 3",
+    label: "Step 2",
     content:
-      "You will be able to see all the medical history of patient with any ongoing consultation he/she is going through.",
+      "Instantly view their complete medical history along with any ongoing consultation they are going through.",
   },
 ];
 
@@ -55,12 +47,7 @@ function HowItWorks() {
   );
 }
 
-function IceLanding({ onCheckNow, onLogin }) {
-  
-  const handleCheckNow = () => {
-    onLogin?.();
-  };
-
+function IceLanding({ onStart }) {
   return (
     <div className="w-full max-w-[430px] bg-white px-2 py-4 sm:px-4">
       <div className="mx-auto max-w-[360px] text-center">
@@ -70,13 +57,13 @@ function IceLanding({ onCheckNow, onLogin }) {
 
         <p className="mx-auto mt-5 max-w-[320px] text-[13px] font-medium leading-[1.1] text-[#a2028f] sm:text-[15px]">
           Medical history instantly accessible when it matters the most -
-          Emergencies. Simply scan a QR code or ID to view vital health
-          information - fast and secure.
+          Emergencies. Simply scan the QR code of the person to view their vital
+          health information - fast and secure.
         </p>
 
         <button
           type="button"
-          onClick={handleCheckNow}
+          onClick={onStart}
           className="mx-auto mt-8 inline-flex h-[50px] min-w-[260px] items-center justify-center gap-2 rounded-[18px] bg-gradient-to-b from-[#a2028f] to-[#0e1896] px-8 text-[16px] font-semibold text-white shadow-[0_16px_28px_rgba(14,24,150,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_20px_34px_rgba(14,24,150,0.28)] focus:outline-none focus:ring-4 focus:ring-[#d6dbff]"
         >
           Check It Now
@@ -90,78 +77,15 @@ function IceLanding({ onCheckNow, onLogin }) {
 }
 
 export default function IceEmergencySection() {
-  const [selectedType, setSelectedType] = useState("Citizen");
-  const [authenticatedType, setAuthenticatedType] = useState(null);
-  const [showLoginForm, setShowLoginForm] = useState(false);
-  const showCredentialLogin =
-    selectedType === "Doctor" || selectedType === "Staff";
+  const [started, setStarted] = useState(false);
 
-  const handleLoginSuccess = (userType = selectedType) => {
-    setAuthenticatedType(userType);
-  };
-
-  if (authenticatedType) {
+  if (started) {
     return (
       <div className="w-full max-w-[430px] rounded-[34px] bg-white px-2 py-4 sm:px-4">
-        <IcePatientLookupScreens userType={authenticatedType} />
+        <IcePatientLookupScreens />
       </div>
     );
   }
 
-  if (!showLoginForm) {
-    return (
-      <IceLanding
-        onLogin={() => setShowLoginForm(true)}
-      />
-    );
-  }
-
-  return (
-    <div className="w-full max-w-[430px] rounded-[34px] bg-white px-2 py-4 sm:px-4">
-      <div className="text-center">
-        <p className="mb-5 text-[25px] font-extrabold leading-tight text-wave sm:text-[28px]">
-          Emergency Section
-        </p>
-
-        <div
-          className="mx-auto flex w-full max-w-[240px] items-center justify-between rounded-full bg-[#d6dbff] p-[6px] text-[12px] text-[#071f9f] shadow-[0_14px_32px_rgba(14,24,150,0.10)] sm:max-w-[256px]"
-          aria-label="Emergency user type selector"
-          role="tablist"
-        >
-          {userTypes.map((type) => {
-            const isSelected = selectedType === type;
-
-            return (
-              <button
-                key={type}
-                type="button"
-                role="tab"
-                aria-selected={isSelected}
-                onClick={() => setSelectedType(type)}
-                className={`rounded-full px-4 py-2 text-[12px] font-medium transition sm:px-5 ${
-                  isSelected
-                    ? "bg-gradient-to-b from-[#a2028f] to-[#0e1896] text-white shadow-[0_8px_18px_rgba(14,24,150,0.25)]"
-                    : "text-[#071f9f] hover:bg-white/45"
-                }`}
-              >
-                {type}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {showCredentialLogin ? (
-        <DoctorIceLoginForm
-          userType={selectedType}
-          onLoginSuccess={handleLoginSuccess}
-        />
-      ) : (
-        <>
-          <IceAccessForm onLoginSuccess={() => handleLoginSuccess("Citizen")} />
-          <HowItWorks />
-        </>
-      )}
-    </div>
-  );
+  return <IceLanding onStart={() => setStarted(true)} />;
 }

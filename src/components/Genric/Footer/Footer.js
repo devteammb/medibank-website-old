@@ -6,7 +6,7 @@ import { IoLocationOutline } from "react-icons/io5";
 
 export default function Footer() {
 	return (
-		<footer className=" bg-white text-[#0D0B4C]">
+		<footer className="relative z-10 bg-white text-[#0D0B4C]">
 			<div className="container mx-auto px-6 py-14">
 				<div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_0.9fr]">
 					<div className="space-y-5">
