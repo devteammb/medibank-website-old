@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { FiArrowLeft, FiCamera, FiImage, FiMenu } from "react-icons/fi";
+import { FiArrowLeft, FiCamera, FiImage } from "react-icons/fi";
 import { LuSparkles } from "react-icons/lu";
+import jsQR from "jsqr";
 
 function LookupShell({ children, className = "" }) {
   return (
@@ -11,16 +12,6 @@ function LookupShell({ children, className = "" }) {
       className={`mx-auto w-full rounded-[28px]  px-5 py-6  sm:px-6 ${className}`}
     >
       {children}
-    </div>
-  );
-}
-
-function DividerWithText() {
-  return (
-    <div className="my-7 flex items-center gap-3 text-[11px] font-extrabold text-[#071f9f]">
-      <span className="h-px flex-1 bg-[#8a98dc]" />
-      OR
-      <span className="h-px flex-1 bg-[#8a98dc]" />
     </div>
   );
 }
@@ -51,31 +42,6 @@ function LookupHome({ onScan }) {
           Scan QR Code
         </button>
       </section>
-
-      <DividerWithText />
-
-      <form onSubmit={(event) => event.preventDefault()}>
-        <label
-          htmlFor="patient-mid"
-          className="mb-2 block text-[12px] font-extrabold text-[#071f9f]"
-        >
-          Enter MID
-        </label>
-        <input
-          id="patient-mid"
-          name="mid"
-          type="text"
-          inputMode="text"
-          placeholder="1234568974650"
-          className="h-[42px] w-full rounded-[6px] border border-[#dfe3f8] bg-white px-4 text-[12px] font-medium text-[#071f9f] outline-none transition placeholder:text-[#d8ddf2] focus:border-[#3d4ed8] focus:ring-4 focus:ring-[#d6dbff]/70"
-        />
-        <button
-          type="submit"
-          className="mt-5 h-[43px] w-full rounded-[16px] bg-gradient-to-b from-[#b4009f] to-[#1416a3] text-[13px] font-extrabold text-white shadow-[0_13px_22px_rgba(14,24,150,0.24)] transition hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-[#d6dbff]"
-        >
-          Search
-        </button>
-      </form>
     </LookupShell>
   );
 }
@@ -109,49 +75,77 @@ function CornerFrame() {
 function Scanner({ onBack }) {
   const videoRef = useRef(null);
   const streamRef = useRef(null);
-  const detectorRef = useRef(null);
+  const canvasRef = useRef(null);
   const frameRef = useRef(null);
+  const handledRef = useRef(false);
   const [cameraStatus, setCameraStatus] = useState("Starting camera…");
   const [scanResult, setScanResult] = useState("");
   const [torchEnabled, setTorchEnabled] = useState(false);
   const [canUseTorch, setCanUseTorch] = useState(false);
 
+  const stopCamera = () => {
+    if (frameRef.current) {
+      cancelAnimationFrame(frameRef.current);
+    }
+
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach((track) => track.stop());
+    }
+  };
+
+  // Reads a QR frame off a canvas so detection works in every browser (jsQR),
+  // instead of relying on the camera's native BarcodeDetector.
+  const getCanvasContext = () => {
+    if (!canvasRef.current) {
+      canvasRef.current = document.createElement("canvas");
+    }
+    return canvasRef.current.getContext("2d", { willReadFrequently: true });
+  };
+
+  const handleDecoded = (rawValue) => {
+    if (handledRef.current) return;
+    handledRef.current = true;
+
+    const value = rawValue || "";
+    setScanResult(value || "QR code detected");
+
+    if (/^https?:\/\//i.test(value)) {
+      setCameraStatus("QR code detected. Redirecting…");
+      stopCamera();
+      window.location.assign(value);
+    } else {
+      setCameraStatus("QR code detected.");
+      stopCamera();
+    }
+  };
+
   useEffect(() => {
     let isMounted = true;
 
-    const stopCamera = () => {
-      if (frameRef.current) {
-        cancelAnimationFrame(frameRef.current);
-      }
+    const scanFrame = () => {
+      if (!isMounted || handledRef.current) return;
 
-      if (streamRef.current) {
-        streamRef.current.getTracks().forEach((track) => track.stop());
-      }
-    };
+      const video = videoRef.current;
 
-    const scanFrame = async () => {
-      if (!isMounted || !detectorRef.current || !videoRef.current) {
-        return;
-      }
+      if (video && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+        const width = video.videoWidth;
+        const height = video.videoHeight;
 
-      if (videoRef.current.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-        try {
-          const codes = await detectorRef.current.detect(videoRef.current);
-          if (codes.length > 0) {
-            const value = codes[0].rawValue || "";
-            setScanResult(value || "QR code detected");
+        if (width && height) {
+          const context = getCanvasContext();
+          canvasRef.current.width = width;
+          canvasRef.current.height = height;
+          context.drawImage(video, 0, 0, width, height);
 
-            if (/^https?:\/\//i.test(value)) {
-              setCameraStatus("QR code detected. Redirecting…");
-              stopCamera();
-              window.location.assign(value);
-            } else {
-              setCameraStatus("QR code detected.");
-            }
+          const imageData = context.getImageData(0, 0, width, height);
+          const code = jsQR(imageData.data, width, height, {
+            inversionAttempts: "dontInvert",
+          });
+
+          if (code && code.data) {
+            handleDecoded(code.data);
             return;
           }
-        } catch (error) {
-          setCameraStatus("Camera is open. Align the QR code inside the frame.");
         }
       }
 
@@ -189,14 +183,7 @@ function Scanner({ onBack }) {
         setCanUseTorch(Boolean(capabilities.torch));
         setCameraStatus("Camera is open. Align the QR code inside the frame.");
 
-        if ("BarcodeDetector" in window) {
-          detectorRef.current = new window.BarcodeDetector({ formats: ["qr_code"] });
-          frameRef.current = requestAnimationFrame(scanFrame);
-        } else {
-          setCameraStatus(
-            "Camera is open. QR detection depends on browser support; align the code or upload from gallery.",
-          );
-        }
+        frameRef.current = requestAnimationFrame(scanFrame);
       } catch (error) {
         setCameraStatus(
           "Unable to open camera. Please allow camera permission and try again.",
@@ -210,7 +197,40 @@ function Scanner({ onBack }) {
       isMounted = false;
       stopCamera();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const image = new window.Image();
+    const objectUrl = URL.createObjectURL(file);
+
+    image.onload = () => {
+      const context = getCanvasContext();
+      canvasRef.current.width = image.naturalWidth;
+      canvasRef.current.height = image.naturalHeight;
+      context.drawImage(image, 0, 0);
+
+      const imageData = context.getImageData(
+        0,
+        0,
+        image.naturalWidth,
+        image.naturalHeight,
+      );
+      const code = jsQR(imageData.data, image.naturalWidth, image.naturalHeight);
+      URL.revokeObjectURL(objectUrl);
+
+      if (code && code.data) {
+        handleDecoded(code.data);
+      } else {
+        setCameraStatus("No QR code found in that image. Try another photo.");
+      }
+    };
+
+    image.src = objectUrl;
+  };
 
   const toggleTorch = async () => {
     const [videoTrack] = streamRef.current?.getVideoTracks() || [];
@@ -267,7 +287,12 @@ function Scanner({ onBack }) {
         <label className="inline-flex h-[36px] cursor-pointer items-center gap-2 rounded-[9px] bg-white px-4 text-[12px] font-extrabold text-[#9c14aa] shadow-[0_8px_20px_rgba(14,24,150,0.10)] transition hover:-translate-y-0.5 focus-within:ring-4 focus-within:ring-white/70">
           <FiImage className="h-4 w-4" aria-hidden="true" />
           Upload from Gallery
-          <input type="file" accept="image/*" className="sr-only" />
+          <input
+            type="file"
+            accept="image/*"
+            className="sr-only"
+            onChange={handleFileUpload}
+          />
         </label>
       </div>
     </LookupShell>

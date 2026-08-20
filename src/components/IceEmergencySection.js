@@ -10,7 +10,6 @@ const citizenSteps = [
     content: (
       <>
         Scan the <span className="font-extrabold">QR Code</span> of the person
-        or enter their <span className="font-extrabold">MID</span>
       </>
     ),
   },
