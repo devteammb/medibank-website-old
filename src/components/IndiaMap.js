@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-import SignupPopup from "./ui/SignupPopup";
+import { APP_SIGNUP_URL } from "@/lib/appLinks";
 
 const INDIA_TOPO_JSON = require("../components/Map/india.topo.json");
 
@@ -1089,8 +1089,6 @@ const App = () => {
 		Hospitals: false,
 	}); // Modified to separate state for each tab
 
-	const [isOpenModel, setIsOpenModel] = useState(false);
-
 	const cardsPerPage = 12;
 	const subcategories = activeState?.value[activeTab] || {};
 	const subcategoryEntries = Object.entries(subcategories);
@@ -1198,9 +1196,11 @@ const App = () => {
 
 								<div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 relative">
 									<div className="absolute inset-0 backdrop-blur-[2px] bg-white/35 z-10 rounded-xl flex items-center justify-center">
-										<span
+										<a
+											href={APP_SIGNUP_URL}
+											target="_blank"
+											rel="noopener noreferrer"
 											className="text-white font-normal bg-[linear-gradient(180deg,_#9F028D_0%,_#0E1896_105%)] mx-auto rounded-lg px-4 py-2 cursor-pointer flex gap-2 items-center justify-center shadow-lg"
-											onClick={() => setIsOpenModel(true)}
 										>
 											Join Betalist
 											<Image
@@ -1210,7 +1210,7 @@ const App = () => {
 												alt="lock"
 												className="w-4 h-4"
 											/>
-										</span>
+										</a>
 									</div>
 
 									{Object.entries(subcategories)
@@ -1395,8 +1395,6 @@ const App = () => {
 					</div>
 				</div>
 			</div>
-
-			<SignupPopup isOpen={isOpenModel} setIsOpen={setIsOpenModel} />
 		</>
 	);
 };

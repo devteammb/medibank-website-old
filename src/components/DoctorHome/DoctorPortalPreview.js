@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { createGsapContext } from "@/lib/gsap";
+import { APP_SIGNUP_URL } from "@/lib/appLinks";
 
 const previewSlides = [
   {
@@ -148,7 +149,7 @@ export default function DoctorPortalPreview() {
             </div>
 
             <a
-              href="/doctorRegistration"
+              href={APP_SIGNUP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="

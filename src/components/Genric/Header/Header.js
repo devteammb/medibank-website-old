@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { FiArrowUpRight } from "react-icons/fi";
 import { FiArrowRight } from "react-icons/fi";
+import { APP_LOGIN_URL } from "@/lib/appLinks";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -23,12 +24,13 @@ export default function Header() {
 
   const loginLinks = [
     {
-      name: "Doctor",
-      url: "https://doctor-portal-c4qbq7eraq-el.a.run.app",
+      name: "User",
+      url: APP_LOGIN_URL,
     },
     {
-      name: "User",
-      url: "https://patient-web-c4qbq7eraq-el.a.run.app",
+      name: "Doctor",
+      url: null,
+      comingSoon: true,
     },
   ];
 
@@ -279,17 +281,29 @@ export default function Header() {
               </button>
 
               <div className="absolute right-0 top-full hidden group-hover:block group-focus-within:block w-[150px] rounded-2xl bg-white shadow-xl border p-3">
-                {loginLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    className="block rounded-xl px-3 py-2 text-center hover:bg-gray-50 text-[#282672]"
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {link.name}
-                  </a>
-                ))}
+                {loginLinks.map((link) =>
+                  link.comingSoon ? (
+                    <span
+                      key={link.name}
+                      className="block rounded-xl px-3 py-2 text-center text-gray-400 cursor-not-allowed"
+                    >
+                      {link.name}
+                      <span className="block text-[10px] font-semibold uppercase tracking-wide">
+                        Coming soon
+                      </span>
+                    </span>
+                  ) : (
+                    <a
+                      key={link.name}
+                      className="block rounded-xl px-3 py-2 text-center hover:bg-gray-50 text-[#282672]"
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.name}
+                    </a>
+                  )
+                )}
               </div>
             </div>
           </nav>
@@ -331,18 +345,30 @@ export default function Header() {
             <div className="rounded-2xl border bg-white px-4 py-3">
               <p className="mb-3 font-semibold text-[#282672]">Login</p>
               <div className="grid grid-cols-2 gap-3">
-                {loginLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="rounded-xl border border-indigo-100 px-4 py-2 text-center font-semibold text-[#282672] transition-all hover:bg-gray-50"
-                  >
-                    {link.name}
-                  </a>
-                ))}
+                {loginLinks.map((link) =>
+                  link.comingSoon ? (
+                    <span
+                      key={link.name}
+                      className="rounded-xl border border-indigo-100 px-4 py-2 text-center font-semibold text-gray-400 cursor-not-allowed"
+                    >
+                      {link.name}
+                      <span className="block text-[10px] font-semibold uppercase tracking-wide">
+                        Coming soon
+                      </span>
+                    </span>
+                  ) : (
+                    <a
+                      key={link.name}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="rounded-xl border border-indigo-100 px-4 py-2 text-center font-semibold text-[#282672] transition-all hover:bg-gray-50"
+                    >
+                      {link.name}
+                    </a>
+                  )
+                )}
               </div>
             </div>
           </div>
