@@ -14,8 +14,9 @@ export default function Home() {
   const containerRef = useRef(null);
   const stickyPanelClass = "stack-panel sticky h-[100svh] md:h-screen z-0";
 
-  // As each panel gets covered by the next one on scroll, shrink + fade it
-  // so the outgoing slide visibly "minimizes" into the stack.
+  // Clean PowerPoint-style slide change: as the next panel scrolls up to cover
+  // the current one, the outgoing slide shrinks slightly (a subtle "minimize")
+  // while staying fully opaque — no fade, so nothing looks washed out.
   useEffect(() => {
     return createGsapContext(containerRef, (gsap) => {
       const panels = gsap.utils.toArray(".stack-panel");
@@ -24,17 +25,16 @@ export default function Home() {
         const inner = panel.firstElementChild;
         if (!inner) return;
 
-        gsap.set(inner, { transformOrigin: "center center", willChange: "transform" });
+        gsap.set(inner, { transformOrigin: "center center" });
         gsap.to(inner, {
-          scale: 0.9,
-          opacity: 0.5,
-          borderRadius: 28,
-          ease: "none",
+          scale: 0.94,
+          borderRadius: 24,
+          ease: "power1.out",
           scrollTrigger: {
             trigger: panel,
             start: "top top",
             end: "+=100%",
-            scrub: true,
+            scrub: 0.5,
           },
         });
       });
