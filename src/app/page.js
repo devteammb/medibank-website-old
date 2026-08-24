@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef } from "react";
 import Hero from "@/components/Home/Hero";
 import ReportCarouselSection from "@/components/Home/ReportCarouselSection";
 import HealthIdentitySection from "@/components/Home/HealthIdentitySection";
@@ -7,14 +8,43 @@ import DataControlSection from "@/components/Home/DataControlSection";
 import Howitworks from "@/components/Home/Howitworks";
 import Realconsequences from "@/components/Home/Realconsequences";
 import Subscription from "@/components/Home/Subscription";
+import { createGsapContext } from "@/lib/gsap";
 
 export default function Home() {
-  const stickyPanelClass = "sticky h-[100svh] md:h-screen z-0";
+  const containerRef = useRef(null);
+  const stickyPanelClass = "stack-panel sticky h-[100svh] md:h-screen z-0";
+
+  // As each panel gets covered by the next one on scroll, shrink + fade it
+  // so the outgoing slide visibly "minimizes" into the stack.
+  useEffect(() => {
+    return createGsapContext(containerRef, (gsap) => {
+      const panels = gsap.utils.toArray(".stack-panel");
+
+      panels.forEach((panel) => {
+        const inner = panel.firstElementChild;
+        if (!inner) return;
+
+        gsap.set(inner, { transformOrigin: "center center", willChange: "transform" });
+        gsap.to(inner, {
+          scale: 0.9,
+          opacity: 0.5,
+          borderRadius: 28,
+          ease: "none",
+          scrollTrigger: {
+            trigger: panel,
+            start: "top top",
+            end: "+=100%",
+            scrub: true,
+          },
+        });
+      });
+    });
+  }, []);
 
   return (
     <>
       {/* Sticky stack panels */}
-      <div className="relative isolate overflow-x-clip">
+      <div ref={containerRef} className="relative isolate overflow-x-clip">
         <div className={`${stickyPanelClass} top-0 md:top-[5px]`}>
           <Hero />
         </div>
