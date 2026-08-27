@@ -12,18 +12,32 @@ export default function Page() {
 			imgurl: "/images/founders/adi-main.png",
 		},
 		{
-			Name: "Dr. Srinivas K",
-			Designation: "Chief Health Officer",
+			Name: "Sudeep Banerjee Chopra",
+			Designation: "CIO (Fractional)",
 			Details:
-				"Dr. Srinivas Kunku is a highly reputed, accomplished and award-winning ENT Surgeon and Otorhinolaryngologist with nearly two decades of clinical and surgical expertise. Currently anchoring advanced ENT care at SPARSH, Manipal & Cavalier Hospitals in Bangalore, Dr. Kunku also completed prestigious international fellowships in Micro Ear Surgery, Rhinoplasty, and FESS across Singapore, South Korea and alongside specialised training at the Tata Memorial Hospital. Known for his pioneering approach to patient-centric care and advanced surgical interventions, he has established a reputation as one of the region’s top specialists in both adult and paediatric otolaryngology which also netted him several accolades.",
-			imgurl: "/images/founders/drsri.png",
+				"Sudeep leads MediBank’s technology vision and strategic direction, bringing together product thinking, software engineering, artificial intelligence, and healthcare technology. As Fractional CIO, he works closely with the engineering and product teams to shape MediBank’s technical architecture, technology roadmap, security practices, and long-term scalability. His experience building AI-driven products and technology ventures gives him a strong focus on turning complex problems into practical, user-focused solutions. At MediBank, he is responsible for ensuring that technology remains reliable, secure, scalable, and aligned with the needs of patients, healthcare professionals, and the organization.",
+			imgurl: "/images/founders/sudeepRaven.png",
 		},
 		{
-			Name: "Murali Krishna",
-			Designation: "Project Manager",
+			Name: "Rahul Morathoti",
+			Designation: "Principal Engineer",
 			Details:
-				"Murali Krishna Kesapragada is a seasoned technology leader and Founder of Ivety Solutions, with expertise in algorithms, data science, machine learning, and product management. With over two decades of experience across Wipro, Satyam, and Operative, he specializes in AdTech, MarTech, cloud platforms, and building scalable, data-driven solutions.",
-			imgurl: "/images/founders/murali1.png",
+				"Rahul is responsible for the engineering foundations that power MediBank. As Principal Engineer, he focuses on system architecture, backend engineering, technical design, performance, and building reliable systems capable of scaling with the platform. He works across engineering teams to solve complex technical challenges, establish strong development practices, and ensure that MediBank’s systems remain maintainable and resilient as new products and capabilities are introduced. His role sits at the intersection of deep technical problem-solving and long-term architectural thinking.",
+			imgurl: "/images/founders/rahul-raven.png",
+		},
+		{
+			Name: "Yashwanth Reddy",
+			Designation: "Frontend / UI Engineer",
+			Details:
+				"Yashwanth focuses on creating the interfaces and digital experiences through which users interact with MediBank. He works across frontend engineering and UI implementation, translating product concepts and designs into responsive, accessible, and intuitive experiences. His work spans the patient-facing experience as well as internal interfaces, with an emphasis on consistency, usability, performance, and attention to detail. He plays an important role in making MediBank’s technology feel simple and approachable despite the complexity behind it.",
+			imgurl: "/images/founders/yashwanthRaven.png",
+		},
+		{
+			Name: "Sai Prabhas",
+			Designation: "DevOps Engineer",
+			Details:
+				"Sai is responsible for the infrastructure and operational systems that keep MediBank running reliably. His work spans cloud infrastructure, deployment pipelines, automation, monitoring, environment management, and platform reliability. He works closely with the engineering team to streamline development and deployments while maintaining the security, availability, and performance expected from a healthcare platform. His focus is on building dependable infrastructure that allows MediBank to ship quickly without compromising stability or operational resilience.",
+			imgurl: "/images/founders/saiprabhas.png",
 		},
 		{
 			Name: "Aman Dwivedi",
@@ -32,33 +46,11 @@ export default function Page() {
 				"Aman Dwivedi is a Sr. full-stack developer and Gen AI developer building scalable SaaS platforms. Skilled in Next.js, Node.js, Prisma, and cloud infrastructure, he specializes in multi-tenant architectures, automation, and AI-driven solutions, with a strong emphasis on performance, UI/UX precision, and product innovation for Indian markets.",
 			imgurl: "/images/founders/aman-main.png",
 		},
-		{
-			Name: "Deepthi Murikipudi",
-			Designation: "AI/ML Engineer",
-			Details:
-				"Deepthi Murikipudi is an AI/ML engineer with expertise in quantitative research, algorithmic trading, and financial analytics. Skilled in Python, PyTorch, and data pipelines. She is particularly focused on healthtech in AI. She has been working on Medical data processing and Medical data diagnosis workflow flow.",
-			imgurl: "/images/founders/deepthi.png",
-		},
-		{
-			Name: "Meet Mathukiya",
-			Designation: "Sr. App Developer",
-			Details:
-				"Meet Mathukiya is a Senior Flutter Developer specializing in cross-platform applications across Android, iOS, Web, and Windows. Proficient in GetX, Firebase, FCM, and REST API integration, he delivers scalable, high-performance apps with strong UI/UX focus. With industry experience, he builds reliable, user-centric digital solutions.",
-			imgurl: "/images/founders/meet-main.png",
-		},
-		{
-			Name: "D Krishna Kishore",
-			Designation: "Head of Corporate Relations",
-			Details:
-				"D Krishna Kishore is a Senior Healthcare Executive with 20+ years of experience in hospital operations, corporate billing, and business development. Holding an MBA from NMIMS, he spent 14 years leading TPA and credit operations at Yashoda Super Speciality Hospitals. Formerly VP at Sri Visista Health Care, he excels at B2B deals, insurance ecosystems, and scaling healthcare revenue.",
-			imgurl: "/images/founders/krishnamedibank.png",
-		}
 		
 		
 	];
 
-	const largeFounders = founderData.slice(0, 2);
-	const smallFounders = founderData.slice(2);
+	
 
 	const advisoryData = [
 		{
@@ -175,112 +167,56 @@ export default function Page() {
 			</div>
 
 			{/* Founding Team */}
-			{/* <div className="bg-white md:pt-[88px]" id="about2">
-				
-				<div className="founding-team md:py-4 mx-10 md:mx-16 rounded-[30px] md:bg-[#F6F5FF]">
-					<h2
-						className="
-							relative
-							font-bold
-							text-[32px]
-							text-[#0b137a]
-							text-center
-							py-16
-							[-webkit-text-stroke:0.5px_transparent]
-							bg-[linear-gradient(180deg,#9F028D_0%,#0E1896_185%)]
-							bg-clip-text
-							[-webkit-background-clip:text]
-						"
-						>
-						The Founders
-					</h2>
+			<section id="about2" className="founding-honeycomb" aria-labelledby="founding-team-title">
+				<div className="founding-honeycomb__glow founding-honeycomb__glow--one" />
+				<div className="founding-honeycomb__glow founding-honeycomb__glow--two" />
+				<div className="founding-honeycomb__inner">
+					<div className="founding-honeycomb__heading">
+						<h2 id="founding-team-title">People behind the purpose</h2>
+					</div>
 
-					<div className="flex justify-center gap-6 md:gap-10 items-center flex-wrap">
-						{largeFounders.map((item, index) => (
-							<div
-								key={`large-founder-${index}`}
-								className="group relative w-full max-w-[260px] md:max-w-[280px] overflow-hidden rounded-2xl bg-white shadow-sm"
+					<div className="founding-honeycomb__grid">
+						{founderData.map((member, index) => (
+							<article
+								key={member.Name}
+								className={`founder-cell founder-cell--${index + 1}`}
+								tabIndex={0}
+								aria-label={`${member.Name}, ${member.Designation}`}
 							>
-								<div className="relative h-[260px] md:h-[300px] sog_animation group-hover:rotate-y-180">
-									<div className="absolute inset-0 backface_hidden overflow-hidden rounded-2xl">
-										<Image
-											src={item.imgurl}
-											className="h-full w-full object-cover"
-											width={612}
-											height={612}
-											alt={item.Name}
-										/>
-									</div>
-									<div className="absolute inset-0 backface_hidden rotate-y-180 rounded-2xl border bg-gradient-to-r from-purple-200 via-purple-100 to-blue-200 text-black overflow-y-auto">
-										<p className="p-4 text-[12px] leading-[16px] md:text-[13px] md:leading-[18px]">
-											{item.Details}
-										</p>
+								<div className="founder-cell__shape">
+									<Image
+										src={member.imgurl}
+										alt={member.Name}
+										fill
+										sizes="(max-width: 640px) 46vw, (max-width: 1024px) 30vw, 250px"
+										className="founder-cell__image"
+									/>
+									<div className="founder-cell__shade" />
+									<div className="founder-cell__label">
+										<h3>{member.Name}</h3>
+										<p>{member.Designation}</p>
 									</div>
 								</div>
-								<div className="p-4 text-center">
-									<h4 className="text-lg font-semibold text-[#1B1B1B]">
-										{item.Name}
-									</h4>
-									<p className="text-sm text-[#4C4C6D]">{item.Designation}</p>
+								<div className="founder-popcard">
+									<div className="founder-popcard__header">
+										<div className="founder-popcard__avatar">
+											<Image src={member.imgurl} alt="" fill sizes="64px" />
+										</div>
+										<div>
+											<h3>{member.Name}</h3>
+											<span>{member.Designation}</span>
+										</div>
+									</div>
+									<p>{member.Details}</p>
 								</div>
-							</div>
+							</article>
 						))}
 					</div>
-					<h2
-						className="
-							relative
-							font-bold
-							text-[32px]
-							text-[#0b137a]
-							text-center
-							mt-8
-							py-8
-							[-webkit-text-stroke:0.5px_transparent]
-							bg-[linear-gradient(180deg,#9F028D_0%,#0E1896_185%)]
-							bg-clip-text
-							[-webkit-background-clip:text]
-						"
-						>
-						The team that built MediBank
-					</h2>
-					{smallFounders.length > 0 && (
-						<div className=" grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:gap-6">
-							{smallFounders.map((item, index) => (
-							<div
-								key={`small-founder-${index}`}
-								className="group relative w-full overflow-hidden rounded-2xl bg-white shadow-sm"
-							>
-								<div className="relative aspect-square w-full sog_animation group-hover:rotate-y-180">
-									<div className="absolute inset-0 backface_hidden overflow-hidden rounded-2xl">
-										<Image
-											src={item.imgurl}
-											className="h-full w-full object-cover"
-											width={612}
-											height={912}
-											alt={item.Name}
-										/>
-									</div>
-									<div className="absolute inset-0 backface_hidden rotate-y-180 rounded-2xl border bg-gradient-to-r from-purple-200 via-purple-100 to-blue-200 text-black overflow-y-auto">
-										<p className="p-4 text-[12px] leading-[16px] md:text-[13px] md:leading-[18px]">
-											{item.Details}
-										</p>
-									</div>
-								</div>
-								<div className="p-3 text-center">
-									<h4 className="text-base font-semibold text-[#1B1B1B]">
-										{item.Name}
-									</h4>
-									<p className="text-xs text-[#4C4C6D]">{item.Designation}</p>
-								</div>
-							</div>
-							))}
-						</div>
-					)}
 				</div>
-			</div>*/}
+			</section>
 
 			{/* Advisory Panel */}
-			{/* <div className="bg-white">
+			<div className="bg-white">
 				<div className="w-4/5 container py-16 pb-0">
 					<div className="relative
 							font-bold
@@ -328,7 +264,7 @@ export default function Page() {
 						})}
 					</div>
 				</div>
-			</div> */}
+			</div>
 
 			{/* Doctors who helped us */}
 			<div className="bg-white">
