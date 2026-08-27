@@ -939,7 +939,12 @@ ol {
 	padding: 1.15rem;
 	border: 1px solid rgba(255, 255, 255, 0.72);
 	border-radius: 22px;
-	background: linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(245, 240, 255, 0.74));
+	background: linear-gradient(
+	90deg,
+	rgb(233, 213, 255),
+	rgb(243, 232, 255),
+	rgb(191, 219, 254)
+	);
 	-webkit-backdrop-filter: blur(22px) saturate(150%);
 	backdrop-filter: blur(22px) saturate(150%);
 	box-shadow: 0 24px 60px rgba(28, 19, 93, 0.24), inset 0 1px 0 white;
@@ -960,7 +965,14 @@ ol {
 	height: 18px;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.72);
 	border-left: 1px solid rgba(255, 255, 255, 0.72);
-	background: rgba(250, 247, 255, 0.84);
+	background: linear-gradient(
+	135deg,
+	rgba(233, 213, 255, 0.88),
+	rgba(243, 232, 255, 0.78),
+	rgba(191, 219, 254, 0.74)
+	);
+
+	color: #000;
 	transform: rotate(45deg);
 }
 

@@ -9,7 +9,7 @@ export default function Page() {
 			Designation: "CEO & Founder",
 			Details:
 				"Adi is an Australian expat of Indian origin, with nearly two decades of expertise in Business Development, Risk Management, and operations mainly with Australia’s most prominent banking and financial services organisations. He is renowned for his ability to establish and scale profitable business operations, forging strategic partnerships and streamlining business processes. Now, as the founder and CEO of Medibank, Adi’s goal is to drive innovation in India’s healthcare ecosystem by spearheading the development of the nation’s first patient-centric Electronic Health Record (EHR) platform.",
-			imgurl: "/images/founders/adi-main.png",
+			imgurl: "/images/founders/adi-studio.png",
 		},
 		{
 			Name: "Sudeep Banerjee Chopra",
@@ -17,6 +17,13 @@ export default function Page() {
 			Details:
 				"Sudeep leads MediBank’s technology vision and strategic direction, bringing together product thinking, software engineering, artificial intelligence, and healthcare technology. As Fractional CIO, he works closely with the engineering and product teams to shape MediBank’s technical architecture, technology roadmap, security practices, and long-term scalability. His experience building AI-driven products and technology ventures gives him a strong focus on turning complex problems into practical, user-focused solutions. At MediBank, he is responsible for ensuring that technology remains reliable, secure, scalable, and aligned with the needs of patients, healthcare professionals, and the organization.",
 			imgurl: "/images/founders/sudeepRaven.png",
+		},
+		{
+			Name: "Aman Dwivedi",
+			Designation: "Sr. Full Stack Developer",
+			Details:
+				"Aman Dwivedi is a Sr. full-stack developer and Gen AI developer building scalable SaaS platforms. Skilled in Next.js, Node.js, Prisma, and cloud infrastructure, he specializes in multi-tenant architectures, automation, and AI-driven solutions, with a strong emphasis on performance, UI/UX precision, and product innovation for Indian markets.",
+			imgurl: "/images/founders/aman-main.png",
 		},
 		{
 			Name: "Rahul Morathoti",
@@ -38,13 +45,6 @@ export default function Page() {
 			Details:
 				"Sai is responsible for the infrastructure and operational systems that keep MediBank running reliably. His work spans cloud infrastructure, deployment pipelines, automation, monitoring, environment management, and platform reliability. He works closely with the engineering team to streamline development and deployments while maintaining the security, availability, and performance expected from a healthcare platform. His focus is on building dependable infrastructure that allows MediBank to ship quickly without compromising stability or operational resilience.",
 			imgurl: "/images/founders/saiprabhas.png",
-		},
-		{
-			Name: "Aman Dwivedi",
-			Designation: "Sr. Full Stack Developer",
-			Details:
-				"Aman Dwivedi is a Sr. full-stack developer and Gen AI developer building scalable SaaS platforms. Skilled in Next.js, Node.js, Prisma, and cloud infrastructure, he specializes in multi-tenant architectures, automation, and AI-driven solutions, with a strong emphasis on performance, UI/UX precision, and product innovation for Indian markets.",
-			imgurl: "/images/founders/aman-main.png",
 		},
 		
 		
@@ -216,7 +216,7 @@ export default function Page() {
 			</section>
 
 			{/* Advisory Panel */}
-			<div className="bg-white">
+			{/* <div className="bg-white">
 				<div className="w-4/5 container py-16 pb-0">
 					<div className="relative
 							font-bold
@@ -264,10 +264,10 @@ export default function Page() {
 						})}
 					</div>
 				</div>
-			</div>
+			</div> */}
 
 			{/* Doctors who helped us */}
-			<div className="bg-white">
+			{/* <div className="bg-white">
 				<div className="w-4/5 container py-16 pb-0">
 					<div className="relative
 							font-bold
@@ -300,9 +300,9 @@ export default function Page() {
 											/>
 										</div>
 										<div className=" absolute rounded-[10px] top-0 bottom-0 w-full h-full backface_hidden rotate-y-180 bg-gradient-to-r from-purple-200 via-purple-100 to-blue-200 border text-black">
-											{" "}
+											{" "} */}
 											{/* "Backcard (remove this line when make this section line)" */}
-											<p className="p-4 text-[13px] leading-[16px]">
+											{/* <p className="p-4 text-[13px] leading-[16px]">
 												{item.Details}
 											</p>
 										</div>
@@ -316,7 +316,7 @@ export default function Page() {
 						})}
 					</div>
 				</div>
-			</div>
+			</div> */}
 
 			{/* Careers */}
 			<div id="about3" className="bg-white md:pt-[88px]">

@@ -48,6 +48,17 @@ const Realconsequences = () => {
     };
   }, [api]);
 
+   // Auto scroll every 30 seconds
+  React.useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 15000);
+
+    return () => clearInterval(interval);
+  }, [api]);
+
   const getSlidePosition = (index) => {
     const distance = (index - current + stories.length) % stories.length;
     return distance > stories.length / 2 ? distance - stories.length : distance;

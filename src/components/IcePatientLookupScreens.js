@@ -20,7 +20,7 @@ function LookupHome({ onScan }) {
   return (
     <LookupShell>
             <h1 className="mt-7 text-center text-[18px] font-extrabold text-[#4d008e]">
-        Scan a QR code to access medical records
+        Scan a QR code to access medical records (Only for MediBank registered users)
       </h1>
 
       <section className="mt-5 rounded-[18px] border border-[#ded9ef] bg-white px-7 py-8 text-center shadow-[0_14px_34px_rgba(14,24,150,0.08)]">
