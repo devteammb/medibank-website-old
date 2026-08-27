@@ -12,39 +12,32 @@ export default function Page() {
 			imgurl: "/images/founders/adi-main.png",
 		},
 		{
-			Name: "Dr. Srinivas K",
-			Designation: "Chief Health Officer",
+			Name: "Sudeep Banerjee Chopra",
+			Designation: "CIO (Fractional)",
 			Details:
-				"Dr. Srinivas Kunku is a highly reputed, accomplished and award-winning ENT Surgeon and Otorhinolaryngologist with nearly two decades of clinical and surgical expertise. Currently anchoring advanced ENT care at SPARSH, Manipal & Cavalier Hospitals in Bangalore, Dr. Kunku also completed prestigious international fellowships in Micro Ear Surgery, Rhinoplasty, and FESS across Singapore, South Korea and alongside specialised training at the Tata Memorial Hospital. Known for his pioneering approach to patient-centric care and advanced surgical interventions, he has established a reputation as one of the region’s top specialists in both adult and paediatric otolaryngology which also netted him several accolades.",
-			imgurl: "/images/founders/drsri.png",
+				"Sudeep leads MediBank’s technology vision and strategic direction, bringing together product thinking, software engineering, artificial intelligence, and healthcare technology. As Fractional CIO, he works closely with the engineering and product teams to shape MediBank’s technical architecture, technology roadmap, security practices, and long-term scalability. His experience building AI-driven products and technology ventures gives him a strong focus on turning complex problems into practical, user-focused solutions. At MediBank, he is responsible for ensuring that technology remains reliable, secure, scalable, and aligned with the needs of patients, healthcare professionals, and the organization.",
+			imgurl: "/images/founders/sudeepRaven.png",
 		},
 		{
-			Name: "Sudeep",
-			Designation: "Sr. Developer",
+			Name: "Rahul Morathoti",
+			Designation: "Principal Engineer",
 			Details:
-				"Sudeep is a seasoned technology leader and Founder of Ivety Solutions, with expertise in algorithms, data science, machine learning, and product management. With over two decades of experience across Wipro, Satyam, and Operative, he specializes in AdTech, MarTech, cloud platforms, and building scalable, data-driven solutions.",
-			imgurl: "/images/founders/murali1.png",
+				"Rahul is responsible for the engineering foundations that power MediBank. As Principal Engineer, he focuses on system architecture, backend engineering, technical design, performance, and building reliable systems capable of scaling with the platform. He works across engineering teams to solve complex technical challenges, establish strong development practices, and ensure that MediBank’s systems remain maintainable and resilient as new products and capabilities are introduced. His role sits at the intersection of deep technical problem-solving and long-term architectural thinking.",
+			imgurl: "/images/founders/rahul-raven.png",
 		},
 		{
-			Name: "Rahul",
-			Designation: "AI/ML Engineer",
+			Name: "Yashwanth Reddy",
+			Designation: "Frontend / UI Engineer",
 			Details:
-				"Rahul is an AI/ML engineer with expertise in quantitative research, algorithmic trading, and financial analytics. Skilled in Python, PyTorch, and data pipelines. She is particularly focused on healthtech in AI. She has been working on Medical data processing and Medical data diagnosis workflow flow.",
-			imgurl: "/images/founders/deepthi.png",
+				"Yashwanth focuses on creating the interfaces and digital experiences through which users interact with MediBank. He works across frontend engineering and UI implementation, translating product concepts and designs into responsive, accessible, and intuitive experiences. His work spans the patient-facing experience as well as internal interfaces, with an emphasis on consistency, usability, performance, and attention to detail. He plays an important role in making MediBank’s technology feel simple and approachable despite the complexity behind it.",
+			imgurl: "/images/founders/yashwanthRaven.png",
 		},
 		{
 			Name: "Sai Prabhas",
-			Designation: "Sr. App Developer",
+			Designation: "DevOps Engineer",
 			Details:
-				"Sai is a Senior Flutter Developer specializing in cross-platform applications across Android, iOS, Web, and Windows. Proficient in GetX, Firebase, FCM, and REST API integration, he delivers scalable, high-performance apps with strong UI/UX focus. With industry experience, he builds reliable, user-centric digital solutions.",
-			imgurl: "/images/founders/meet-main.png",
-		},
-		{
-			Name: "Yashwanth",
-			Designation: "Head of Corporate Relations",
-			Details:
-				"D Krishna Kishore is a Senior Healthcare Executive with 20+ years of experience in hospital operations, corporate billing, and business development. Holding an MBA from NMIMS, he spent 14 years leading TPA and credit operations at Yashoda Super Speciality Hospitals. Formerly VP at Sri Visista Health Care, he excels at B2B deals, insurance ecosystems, and scaling healthcare revenue.",
-			imgurl: "/images/founders/krishnamedibank.png",
+				"Sai is responsible for the infrastructure and operational systems that keep MediBank running reliably. His work spans cloud infrastructure, deployment pipelines, automation, monitoring, environment management, and platform reliability. He works closely with the engineering team to streamline development and deployments while maintaining the security, availability, and performance expected from a healthcare platform. His focus is on building dependable infrastructure that allows MediBank to ship quickly without compromising stability or operational resilience.",
+			imgurl: "/images/founders/saiprabhas.png",
 		},
 		{
 			Name: "Aman Dwivedi",
