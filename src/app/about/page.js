@@ -46,6 +46,13 @@ export default function Page() {
 				"Sai is responsible for the infrastructure and operational systems that keep MediBank running reliably. His work spans cloud infrastructure, deployment pipelines, automation, monitoring, environment management, and platform reliability. He works closely with the engineering team to streamline development and deployments while maintaining the security, availability, and performance expected from a healthcare platform. His focus is on building dependable infrastructure that allows MediBank to ship quickly without compromising stability or operational resilience.",
 			imgurl: "/images/founders/saiprabhas.png",
 		},
+		{
+			Name: "D Krishna Kishore",
+			Designation: "Head of Corporate Relations",
+			Details:
+				"D Krishna Kishore is a Senior Healthcare Executive with 20+ years of experience in hospital operations, corporate billing, and business development. Holding an MBA from NMIMS, he spent 14 years leading TPA and credit operations at Yashoda Super Speciality Hospitals. Formerly VP at Sri Visista Health Care, he excels at B2B deals, insurance ecosystems, and scaling healthcare revenue.",
+			imgurl: "/images/founders/krishnamedibank.png",
+		}
 		
 		
 	];
