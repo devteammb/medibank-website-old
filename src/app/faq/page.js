@@ -145,15 +145,15 @@ export default function FaqPage() {
       <div className={styles.glowOne} />
       <div className={styles.glowTwo} />
       <section className={styles.hero}>
-        <div className={styles.kicker}><Sparkles size={15} /> Help centre</div>
+        <div className={styles.kicker}>Help centre</div>
         <h1>Questions? We&apos;re here<br />to make things <span>clear.</span></h1>
         <p>Everything you need to know about your MediBank Health Identity, privacy, plans, emergency access and family care.</p>
-        <label className={styles.search}>
+        {/* <label className={styles.search}>
           <Search size={21} aria-hidden="true" />
           <span className="sr-only">Search frequently asked questions</span>
           <input ref={searchInputRef} value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search for an answer..." />
           <kbd>{searchShortcut}</kbd>
-        </label>
+        </label> */}
         <div className={styles.trust}><ShieldCheck size={18} /> Your health information stays in your control.</div>
       </section>
 
