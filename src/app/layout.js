@@ -20,6 +20,18 @@ export default function RootLayout({ children }) {
       
       <body>
         <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-NT0SRWV95J"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-NT0SRWV95J');
+          `}
+        </Script>
+        <Script
           src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"
           strategy="afterInteractive"
         />
